@@ -1,0 +1,16 @@
+{
+  "name" : "mojo" ,
+  "version" : "0.0.1" ,
+  "engines" : {
+    "node" : "0.8.x" ,
+    "npm"  : "1.1.x"
+  },
+  "dependencies" : {
+    "ripple-lib" : "0.7.25",
+    "mongoose": "3.5.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/moeadham/mojo.git"
+  }
+}
