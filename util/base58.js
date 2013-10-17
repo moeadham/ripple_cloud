@@ -1,3 +1,4 @@
+var sjcl = require('./sjcl');
 
 var Base58Utils = (function () {
   var alphabets = {
@@ -102,4 +103,4 @@ var Base58Utils = (function () {
   };
 })();
 
-//module.exports = Base58Utils;
+module.exports = Base58Utils;

@@ -1,8 +1,9 @@
-//var Base58Utils = require('./base58');
+var Base58Utils = require('./base58'),
+	sjcl = require('./sjcl');
 
 var RippleAddress = (function () {
   function append_int(a, i) {
-    return [].concat(a, i >> 24, (i >> 16) & 0xff, (i >> 8) & 0xff, i & 0xff)
+    return [].concat(a, i >> 24, (i >> 16) & 0xff, (i >> 8) & 0xff, i & 0xff);
   }
 
   function firstHalfOfSHA512(bytes) {
@@ -48,5 +49,5 @@ var RippleAddress = (function () {
   };
 })();
 
-//exports.RippleAddress = RippleAddress;
+exports.RippleAddress = RippleAddress;
 
