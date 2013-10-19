@@ -23,8 +23,10 @@ module.exports = {
 	disconnect: function(cb){
 		mongoose.disconnect(cb);
 	},
-	find: function(schema, key, val, cb){
-		schema.find({key : val}).exec(function(err, result) {
+	findOne: function(model, key, val, cb){
+		var q = {};
+		q[key] = val;
+		keyModel.findOne(q).exec(function(err, result) {
 			cb(err,result);
 		});
 	}

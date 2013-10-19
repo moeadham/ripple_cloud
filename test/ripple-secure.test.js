@@ -19,15 +19,19 @@ suite('ripple-secure', function() {
     	});
   	});
   	test('check that key is in db', function(done){
-  		secure.keyExists(_pub, done);
+  		secure.keyExists(_pub, function(err,result){
+  				result.pub.should.eql(_pub);
+  				done();
+  		});
   	});
-  	/*var _tx;
-  	var tx_JSON = JSON.parse(_tx);
   	test('sign a new transaction', function(done){
-  		blob = secure.signtx(_pub, _key, _tx);
-  		done();
-  	});*/
-  	test('close to secure db', function(done){
+  		var _tx = '{ "TransactionType" : "Payment", "SigningPubKey":"'+_pub+'", "Account" : "'+_pub+'", "Destination" : "r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV", "Amount" : "10", "Fee" : "10", "Sequence" : 1 }';
+  		var tx_JSON = JSON.parse(_tx);
+  		secure.signtx(_pub, _cypher, tx_JSON, function(blob){
+  			done();	
+  		});
+  	});
+  	/*test('close to secure db', function(done){
 		secure.disconnect(done);
-	});
+	});*/
 });

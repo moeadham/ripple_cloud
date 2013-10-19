@@ -53,7 +53,7 @@ var generateKeys = function(cb) {
 };
 
 var keyExists = function(pub, cb){
-	db.find(db.keyModel,'pub',pub,cb);
+	db.findOne(db.keyModel,'pub',pub,cb);
 };
 
 var encrypt = function(keyBlob, cypher, cb){
@@ -66,17 +66,19 @@ var decryptSecret = function(keyBlob, cypher, cb){
 	cb(err, keyBlob.secret_crypt);
 };
 
-var signtx = function(secret, tx_in) {
+var signtx = function(pub, cypher, tx_in, cb) {
 	var tx = new ripple.Transaction();
-	tx.tx_json = tx_JSON;
-	tx._secret = secret;
-	tx.complete();
+	tx.tx_json = tx_in;
 	var unsigned = tx.serialize().to_hex();
-	tx.sign();
-	return (tx.serialize().to_hex());
+	keyExists(pub,function(err, result){
+		decryptSecret(result,cypher, function(err,secret){
+			tx._secret = secret;
+			tx.complete();
+			tx.sign();
+			cb((tx.serialize().to_hex()));	
+		});
+	});
 };
-
-
 
 //db.connect();
 

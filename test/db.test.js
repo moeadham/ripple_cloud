@@ -7,6 +7,6 @@ var assert = require('assert')
   
 suite('database', function() {
 	test('open should open database connection', function(done) {
-    mongoose.connect(done);
+    	mongoose.connect(done);
   });
 });

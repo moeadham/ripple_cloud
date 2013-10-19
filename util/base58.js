@@ -18,7 +18,7 @@ var Base58Utils = (function () {
           base     = new sjcl.bn(alphabet.length),
           bi       = sjcl.bn.fromBits(sjcl.codec.bytes.toBits(input)),
           buffer   = [];
-		console.log(bi);
+		//console.log(bi);
       while (bi.greaterEquals(base)) {
         var mod = bi.mod(base);
         buffer.push(alphabet[mod.limbs[0]]);
